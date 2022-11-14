@@ -2,7 +2,29 @@ class List(list):
     def __init__(self, data):
         self.data: List = data
 
-    def __getitem__(self, index):  # operator[] for reading
+    def __getitem__(self, index):
+        """
+        operator[] for reading
+
+        >>> lst = List([[[0, 1], [2, 3]], [[4, 5], [6, 7]]])
+        >>> lst[0, 0, 0]
+        0
+
+        >>> lst = List([[[0, 1], [2, 3]], [[4, 5], [6, 7]]])
+        >>> lst[0] = [[10, 11], [12, 13]]
+        >>> lst[0]
+        [[10, 11], [12, 13]]
+
+        >>> lst = List([[[0, 1], [2, 3]], [[4, 5], [6, 7]]])
+        >>> lst[0, 0] = [10, 11]
+        >>> lst[0]
+        [[10, 11], [2, 3]]
+
+        >>> lst = List([[[0, 1], [2, 3]], [[4, 5], [6, 7]]])
+        >>> lst[0, 0] = [10, 11]
+        >>> lst[0, 0]
+        [10, 11]
+        """
         list_index = []
         if isinstance(index, int):
             list_index = self.data[index]
@@ -16,18 +38,21 @@ class List(list):
         return list_index
 
     def __setitem__(self, index, value: object) -> None:  # operator[] for writing
-        i = 0
-        idx = index[i]
-        i += 1
-        list_index = self.data[idx]
-        while i < len(index) - 1:
+        if isinstance(index, int):
+            self.data[index] = value
+        else:
+            i = 0
             idx = index[i]
             i += 1
-            if not isinstance(list_index, int):
-                list_index = list_index[idx]
-        idx = index[i]
-        i += 1
-        list_index[idx] = value
+            list_index = self.data[idx]
+            while i < len(index) - 1:
+                idx = index[i]
+                if not isinstance(list_index, int):
+                    list_index = list_index[idx]
+                i += 1
+            idx = index[i]
+            i += 1
+            list_index[idx] = value
 
 
 if __name__ == '__main__':
