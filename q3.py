@@ -11,6 +11,35 @@ class List(list):
         0
 
         >>> lst = List([[[0, 1], [2, 3]], [[4, 5], [6, 7]]])
+        >>> lst[0, 0]
+        [0, 1]
+
+        >>> lst = List([[[0, 1], [2, 3]], [[4, 5], [6, 7]]])
+        >>> lst[0]
+        [[0, 1], [2, 3]]
+
+
+        >>> lst = List([[[0, 1], [2, 3]], [[4, 5], [6, 7]]])
+        >>> lst[0, 0, 0, 1, 4]
+        0
+        """
+        list_index = []
+        if isinstance(index, int):
+            list_index = self.data[index]
+        else:
+            for i in index:
+                if not isinstance(list_index, int):
+                    if len(list_index) == 0:
+                        list_index = self.data[i]
+                    else:
+                        list_index = list_index[i]
+        return list_index
+
+    def __setitem__(self, index, value: object) -> None:
+        """
+        operator[] for writing
+
+        >>> lst = List([[[0, 1], [2, 3]], [[4, 5], [6, 7]]])
         >>> lst[0] = [[10, 11], [12, 13]]
         >>> lst[0]
         [[10, 11], [12, 13]]
@@ -25,19 +54,6 @@ class List(list):
         >>> lst[0, 0]
         [10, 11]
         """
-        list_index = []
-        if isinstance(index, int):
-            list_index = self.data[index]
-        else:
-            for i in index:
-                if not isinstance(list_index, int):
-                    if len(list_index) == 0:
-                        list_index = self.data[i]
-                    else:
-                        list_index = list_index[i]
-        return list_index
-
-    def __setitem__(self, index, value: object) -> None:  # operator[] for writing
         if isinstance(index, int):
             self.data[index] = value
         else:
