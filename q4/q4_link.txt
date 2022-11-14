@@ -1,0 +1,5 @@
+solution:
+https://www.codingame.com/training/medium/the-fall-episode-1/solution?id=27212621
+
+question:
+https://www.codingame.com/ide/puzzle/the-fall-episode-1
