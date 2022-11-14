@@ -53,7 +53,6 @@ def g(x: string):
     return len(x)
 
 
-
 if __name__ == '__main__':
     f(2)
     f(2)

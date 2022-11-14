@@ -6,3 +6,4 @@ abc.def@mail.c 	abc.def@mail.cc
 abc.def@mail#archive.com 	abc.def@mail-archive.com
 abc.def@mail 	abc.def@mail.org
 abc.def@mail..com 	abc.def@mail.com
+hello@world.mail.com and this is not email

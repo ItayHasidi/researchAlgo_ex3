@@ -14,6 +14,10 @@ def not_sub_string(a, b):
 
 
 def find_email_in_txt(f_name: string):
+    """
+    Finds all valid email addresses in a file and prints them.
+    Also finds all incorrect email addresses and prints them as well.
+    """
     f = open(f_name, "r")
     valid_emails = []
     invalid_emails = []
@@ -23,7 +27,10 @@ def find_email_in_txt(f_name: string):
         x = pattern.search(line)
         y = invalid_pattern.search(line)
         while x is not None:
-            valid_emails.append(x.group()[1:])
+            if x.group()[0] == " " or x.group()[0] == "\t":
+                valid_emails.append(x.group()[1:])
+            else:
+                valid_emails.append(x.group())
             if not_sub_string(y.span(), x.span()):
                 invalid_emails.append(y.group())
             line = line[x.span()[1]+1:]
