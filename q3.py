@@ -16,12 +16,18 @@ class List(list):
         return list_index
 
     def __setitem__(self, index, value: object) -> None:  # operator[] for writing
-        i0: int = index[0]
-        i1: int = index[1]
-        i2: int = index[2]
-        print(type(self.data))
-        print(self.data[i0, i1, i2])
-        self.data[index[0], index[1], index[2]] = value
+        i = 0
+        idx = index[i]
+        i += 1
+        list_index = self.data[idx]
+        while i < len(index) - 1:
+            idx = index[i]
+            i += 1
+            if not isinstance(list_index, int):
+                list_index = list_index[idx]
+        idx = index[i]
+        i += 1
+        list_index[idx] = value
 
 
 if __name__ == '__main__':
@@ -29,7 +35,6 @@ if __name__ == '__main__':
         [[[1, 2, 3, 33], [4, 5, 6, 66]], [[7, 8, 9, 99], [10, 11, 12, 122]], [[13, 14, 15, 155], [16, 17, 18, 188]], ])
     print(mylist[0, 1, 3])
     print(mylist[0])
-    # mylist[0] = 88
     mylist[0, 1, 3] = 88
     print(mylist[0, 1, 3])
     print(mylist.data)
